@@ -175,7 +175,7 @@ pub fn epoll_add(
             raw_fd,
             &mut c::epoll_event {
                 events: event_flags.bits(),
-                r#u64: data,
+                r#u64: (data as *const u8).into(),
             },
         ))
     }
@@ -203,7 +203,7 @@ pub fn epoll_mod(
             raw_fd,
             &mut c::epoll_event {
                 events: event_flags.bits(),
-                r#u64: data,
+                r#u64: (data as *const u8).into(),
             },
         ))
     }
